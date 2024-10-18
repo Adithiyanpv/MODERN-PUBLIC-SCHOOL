@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1c1c2b, #232536);
+            color: #ffffff;
+        }
+    
+        h2 {
+            color: #f4c10f;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+    
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    
+        .form-group label {
+            font-weight: bold;
+            color: #f4c10f;
+        }
+    
+        .form-control {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #f4c10f;
+        }
+    
+        .form-control:focus {
+            border-color: #f4c10f;
+            box-shadow: 0 0 5px rgba(244, 193, 15, 0.5);
+        }
+    
+        .btn-success {
+            background-color: #f4c210;
+            color: #161722;
+            border: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+    
+        .btn-success:hover {
+            background-color: #f4c210;
+            color: #161722;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deactivate User</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    
+    <div class="container">
+        <h2 class="mt-5 text-center">Deactivate User</h2>
+        <form id="deactivateUserForm" method="POST" action="/deactivate-user" class="mt-4">
+            <div class="form-group">
+                <label for="role">Role</label>
+                <input type="text" class="form-control" id="role" name="role" placeholder="Student or Faculty" required>
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+
+            <button type="submit" class="btn btn-danger">Deactivate User</button>
+        </form>
+    </div>
+    
+    <script>
+        document.getElementById('deactivateUserForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+
+            fetch('/deactivate-user', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                alert(result.message || result.error);
+                if (result.message) {
+                    // Optionally, reset the form or redirect the user
+                    this.reset();
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while deactivating the user.');
+            });
+        });
+    </script>
+</body>
+</html>

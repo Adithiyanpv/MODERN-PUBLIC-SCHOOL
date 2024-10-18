@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Base Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #1c1c2b, #232536);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            width: 100%;
+            background-color: #161722;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .brand {
+            color: #f4c10f;
+            font-size: 2.5em;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            text-decoration: none;
+            padding: 14px 0;
+            transition: transform 0.3s;
+        }
+
+        .brand:hover {
+            transform: scale(1.05);
+        }
+
+        .navbar-links a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 14px 20px;
+            font-weight: 600;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-links a:hover {
+            color: #f4c10f;
+            text-shadow: 0 0 5px #f4c10f;
+        }
+
+        /* Main Container */
+        .main-container {
+            margin-top: 120px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: padding 0.3s;
+        }
+
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .welcome-section h1 {
+            font-size: 3.5em;
+            color: #f4c10f;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .welcome-section p {
+            font-size: 1.4em;
+            color: #bbb;
+            margin-bottom: 40px;
+        }
+
+        /* Card Styles */
+        .cards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            width: 300px;
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .card i {
+            font-size: 4em;
+            color: #f4c10f;
+            margin-bottom: 15px;
+            animation: pulseIcon 1.5s infinite ease-in-out;
+        }
+
+        .card h2 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #ffffff;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .card p {
+            font-size: 1.2em;
+            color: #ccc;
+            margin-bottom: 15px;
+        }
+
+        .card a {
+            color: #f4c10f;
+            font-weight: bold;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .card a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
+        }
+        .download-btn {
+    font-size: 1.2em; /* Increase the font size here */
+    padding: 8px 16px; /* Optional: adjust padding to keep it proportional */
+    display: inline-flex; /* Align icon and text */
+    align-items: center; /* Center icon and text vertically */
+    text-decoration: none;
+    color: #f4c10f; /* Button text color */
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.download-btn:hover {
+    background: rgba(255, 255, 255, 0.2); /* Add hover effect */
+    color: #ffffff; /* Change text color on hover */
+}
+
+
+        /* Keyframe for Icon Animation */
+        @keyframes pulseIcon {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .brand {
+                font-size: 2em;
+            }
+
+            .cards {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .card {
+                width: 90%;
+            }
+
+            .welcome-section h1 {
+                font-size: 2.5em;
+            }
+
+            .welcome-section p {
+                font-size: 1.2em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 20px;
+            }
+
+            .card h2 {
+                font-size: 2em;
+            }
+
+            .card p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="brand">Modern Public School</a>
+            <div class="navbar-links">
+                <a href="/logout">Logout</a>
+            </div>
+        </div>
+    </nav>
+    <main class="main-container">
+        <div class="dashboard">
+            <div class="welcome-section">
+                <h1 id="welcome-message">Welcome</h1>
+            </div>
+            <div class="cards">
+                <div class="card">
+                    <i class="fas fa-book"></i>
+                    <h2>OD Application</h2>
+                    <p>Apply for OD to avail attendance.</p>
+                    <a href="/apply-od">Apply Now</a>
+                </div>
+                <div class="card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h2>Schedule</h2>
+                    <p>Check your schedule and dates.</p>
+<div class="download-section">
+    <h2>Download Your Resources</h2>
+    <a href="/download-academic-calendar" class="download-btn" target="_blank">
+        <i class="fas fa-download"></i> Academic Calendar
+    </a>
+    <a href="/download-daily-timetable" class="download-btn" target="_blank">
+        <i class="fas fa-download"></i> Daily Timetable
+    </a>
+</div>
+
+
+                </div>
+                <div class="card">
+                    <i class="fas fa-users"></i>
+                    <h2>Attendance</h2>
+                    <p>Check your attendance percentage.</p>
+                    <a href="/view-attendance">View Attendance</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('/get-username')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.name) {
+                        document.getElementById('welcome-message').textContent = `Welcome, ${data.name}`;
+                    } else {
+                        document.getElementById('welcome-message').textContent = 'Welcome!';
+                    }
+                })
+                .catch(error => console.error('Error fetching the username:', error));
+        });
+    </script>
+</body>
+</html>
