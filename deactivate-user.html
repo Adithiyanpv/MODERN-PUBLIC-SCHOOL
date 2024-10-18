@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deactivate User</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2 class="mt-5 text-center">Deactivate User</h2>
+        <form id="deactivateUserForm" method="POST" action="/deactivate-user" class="mt-4">
+            <div class="form-group">
+                <label for="role">Role</label>
+                <input type="text" class="form-control" id="role" name="role" placeholder="Student or Faculty" required>
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+
+            <button type="submit" class="btn btn-danger">Deactivate User</button>
+        </form>
+    </div>
+    
+    <script>
+        document.getElementById('deactivateUserForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+
+            fetch('/deactivate-user', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                alert(result.message || result.error);
+                if (result.message) {
+                    // Optionally, reset the form or redirect the user
+                    this.reset();
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while deactivating the user.');
+            });
+        });
+    </script>
+</body>
+</html>

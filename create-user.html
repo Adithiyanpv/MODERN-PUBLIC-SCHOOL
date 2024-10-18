@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create User</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2 class="mt-5 text-center">Create User</h2>
+        <form id="createUserForm" class="mt-4">
+            <div class="form-group">
+                <label for="role">Role</label>
+                <input type="text" class="form-control" id="role" name="role" placeholder="Student or Faculty" required>
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="class">Class</label>
+                <input type="text" class="form-control" id="class" name="class" required>
+            </div>
+            <button type="submit" class="btn btn-success">Create User</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('createUserForm').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Collect form data
+            const formData = new FormData(this);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            try {
+                const response = await fetch('/create-user', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                const result = await response.json();
+
+                // Check if the response was successful
+                if (response.ok) {
+                    alert(result.message); // Show alert with success message
+                    this.reset(); // Reset the form fields
+                } else {
+                    alert(result.error); // Show alert with error message
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An unexpected error occurred.'); // Show alert for unexpected error
+            }
+        });
+    </script>
+</body>
+</html>
